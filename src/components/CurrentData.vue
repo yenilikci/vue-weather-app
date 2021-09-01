@@ -1,6 +1,8 @@
 <template>
   <div class="current-data">
-    <div v-if="loading"><RowValue :item="weatherValues" /></div>
+    <div v-if="loading">
+      <RowValue />
+    </div>
     <button @click="currentValue()">Get weather</button>
   </div>
 </template>
@@ -11,11 +13,6 @@
     name: "CurrentData",
     components: {
       RowValue,
-    },
-    data() {
-      return {
-        weatherValues: [],
-      };
     },
     methods: {
       currentValue() {
@@ -30,7 +27,7 @@
                 date: dateValue,
                 body: response.body,
               };
-              this.weatherValues.unshift(value);
+              this.$store.commit("setWeatherValue", value);
             },
             (response) => {
               console.log(response);

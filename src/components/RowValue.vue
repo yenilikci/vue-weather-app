@@ -8,7 +8,7 @@
           <th>Description</th>
           <th>Icon</th>
         </tr>
-        <tr v-for="(i, index) in item" :key="index">
+        <tr v-for="(i, index) in $store.state.weatherValues" :key="index">
           <td>{{ i.date }}</td>
           <td>{{ i.body.weather[0].main }}</td>
           <td>{{ i.body.weather[0].description }}</td>
@@ -29,9 +29,6 @@
 <script>
   export default {
     name: "RowValue",
-    props: {
-      item: Array,
-    },
   };
 </script>
 
