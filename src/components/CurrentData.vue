@@ -2,6 +2,7 @@
   <div class="current-data">
     <div v-if="loading">
       <RowValue />
+      <SomeValue />
     </div>
     <button @click="currentValue()">Get weather</button>
   </div>
@@ -9,10 +10,12 @@
 
 <script>
   import RowValue from "../components/RowValue.vue";
+  import SomeValue from "../components/SomeValue.vue";
   export default {
     name: "CurrentData",
     components: {
       RowValue,
+      SomeValue,
     },
     methods: {
       currentValue() {
@@ -37,10 +40,10 @@
     },
     computed: {
       loading() {
-        if (this.weatherValues !== []) {
-          return true;
-        } else {
+        if (this.$store.state.weatherValues.length === 0) {
           return false;
+        } else {
+          return true;
         }
       },
     },
