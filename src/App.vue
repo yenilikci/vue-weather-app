@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <CurrentData />
+    <HourlyWeather />
   </div>
 </template>
 
 <script>
   import CurrentData from "./components/CurrentData.vue";
+  import HourlyWeather from "./components/HourlyWeather.vue";
   export default {
     name: "App",
     components: {
       CurrentData,
+      HourlyWeather,
     },
   };
 </script>

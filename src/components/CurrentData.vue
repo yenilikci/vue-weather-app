@@ -4,7 +4,7 @@
       <RowValue />
       <SomeValue />
     </div>
-    <button @click="currentValue()">Get weather</button>
+    <button @click="currentValue()">Get current weather</button>
   </div>
 </template>
 
