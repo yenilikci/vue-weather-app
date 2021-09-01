@@ -63,6 +63,7 @@
         </tr>
       </table>
     </div>
+    <span class="num">2)</span>
     <button @click="hourlyValue()">Hourly value</button>
   </div>
 </template>
@@ -110,5 +111,20 @@
     align-items: flex-start;
     margin-bottom: 20px;
     margin-top: 20px;
+  }
+  button {
+    margin: 10px !important;
+    padding: 10px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fff;
+    color: rgb(53, 53, 53);
+    border-radius: 10px;
+    margin: 0px 10px;
+    border: 2px solid rgba(53, 53, 53);
+  }
+  .num {
+    font-size: 25px;
+    font-family: monospace;
   }
 </style>

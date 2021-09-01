@@ -33,7 +33,7 @@
   };
 </script>
 
-<style>
+<style scoped>
   table {
     width: 80%;
   }

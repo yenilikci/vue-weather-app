@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="weather-block">
+  <div class="multi-data">
+    <div class="weather-block" v-if="loading">
       <table>
         <tr>
           <th>TimeZone</th>
@@ -31,6 +31,7 @@
         </tr>
       </table>
     </div>
+    <span class="num">3)</span>
     <select v-model="selectValue" name="citys" id="citys">
       <option value="istanbul">Istanbul</option>
       <option value="izmir">Izmir</option>
@@ -81,11 +82,22 @@
           return "lat=41.015137&lon=28.979530";
         }
       },
+
+      loading() {
+        if (this.$store.state.multiCity.length === 0) {
+          return false;
+        } else {
+          return true;
+        }
+      },
     },
   };
 </script>
 
 <style scoped>
+  .multi-data {
+    padding: 10px;
+  }
   table {
     width: 80%;
   }
@@ -101,5 +113,26 @@
     align-items: center;
     margin-bottom: 20px;
     margin-top: 20px;
+  }
+  select {
+    margin: 0 10px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(53, 53, 53);
+    color: #fff;
+    padding: 10px;
+  }
+  button {
+    padding: 10px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fff;
+    color: rgb(53, 53, 53);
+    border-radius: 10px;
+    border: 2px solid rgba(53, 53, 53);
+  }
+  .num {
+    font-size: 25px;
+    font-family: monospace;
   }
 </style>

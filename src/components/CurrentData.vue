@@ -4,6 +4,7 @@
       <RowValue />
       <SomeValue />
     </div>
+    <span class="num">1)</span>
     <button @click="currentValue()">Get current weather</button>
   </div>
 </template>
@@ -50,4 +51,20 @@
   };
 </script>
 
-<style></style>
+<style>
+  button {
+    margin: 20px !important;
+    padding: 10px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fff;
+    color: rgb(53, 53, 53);
+    border-radius: 10px;
+    margin: 0px 10px;
+    border: 2px solid rgba(53, 53, 53);
+  }
+  .num {
+    font-size: 25px;
+    font-family: monospace;
+  }
+</style>
