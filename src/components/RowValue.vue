@@ -47,6 +47,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
   .icon-class {
     width: 60px;

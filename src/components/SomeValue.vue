@@ -48,5 +48,6 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
 </style>
