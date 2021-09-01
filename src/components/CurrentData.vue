@@ -1,11 +1,22 @@
 <template>
   <div>
+    <div v-if="loading"><RowValue :item="weatherValues[0]" /></div>
     <button @click="currentValue()">Get weather</button>
   </div>
 </template>
 
 <script>
+  import RowValue from "../components/RowValue.vue";
   export default {
+    name: "CurrentData",
+    components: {
+      RowValue,
+    },
+    data() {
+      return {
+        weatherValues: [],
+      };
+    },
     methods: {
       currentValue() {
         this.$http
@@ -14,12 +25,26 @@
           )
           .then(
             (response) => {
-              console.log(response.body.weather);
+              const dateValue = new Date();
+              const value = {
+                date: dateValue,
+                body: response.body,
+              };
+              this.weatherValues.push(value);
             },
             (response) => {
               console.log(response);
             }
           );
+      },
+    },
+    computed: {
+      loading() {
+        if (this.weatherValues !== []) {
+          return true;
+        } else {
+          return false;
+        }
       },
     },
   };
