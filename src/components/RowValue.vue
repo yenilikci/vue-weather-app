@@ -1,14 +1,27 @@
 <template>
   <div>
     <div class="weather-block">
-      <span>{{ item.body.weather[0].main }}</span>
-      <span>{{ item.body.weather[0].description }}</span>
-      <img
-        :src="
-          `http://openweathermap.org/img/wn/${item.body.weather[0].icon}@2x.png`
-        "
-        class="icon-class"
-      />
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Main</th>
+          <th>Description</th>
+          <th>Icon</th>
+        </tr>
+        <tr v-for="(i, index) in item" :key="index">
+          <td>{{ i.date }}</td>
+          <td>{{ i.body.weather[0].main }}</td>
+          <td>{{ i.body.weather[0].description }}</td>
+          <td>
+            <img
+              :src="
+                `http://openweathermap.org/img/wn/${i.body.weather[0].icon}@2x.png`
+              "
+              class="icon-class"
+            />
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -17,15 +30,26 @@
   export default {
     name: "RowValue",
     props: {
-      item: Object,
+      item: Array,
     },
   };
 </script>
 
-<style>
+<style scoped>
+  table {
+    width: 80%;
+  }
+  th,
+  td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 10px;
+  }
   .weather-block {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
   }
   .icon-class {
     width: 60px;

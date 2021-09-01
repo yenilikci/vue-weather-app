@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="loading"><RowValue :item="weatherValues[0]" /></div>
+  <div class="current-data">
+    <div v-if="loading"><RowValue :item="weatherValues" /></div>
     <button @click="currentValue()">Get weather</button>
   </div>
 </template>
@@ -30,7 +30,7 @@
                 date: dateValue,
                 body: response.body,
               };
-              this.weatherValues.push(value);
+              this.weatherValues.unshift(value);
             },
             (response) => {
               console.log(response);
