@@ -3,16 +3,63 @@
     <div class="weather-block" v-if="$store.state.hourlyWeather.length !== 0">
       <table>
         <tr>
-          <th>Timezone</th>
           <th>Date</th>
-          <th>Current</th>
-          <th>Hourly</th>
+          <th
+            v-for="(i, index) in $store.state.hourlyWeather[0].body.hourly"
+            :key="index"
+          >
+            {{ new Date(i.dt * 1000) }}
+          </th>
         </tr>
+
         <tr v-for="(i, index) in $store.state.hourlyWeather" :key="index">
-          <td>{{ i.body.timezone }}</td>
-          <td>{{ i.date }}</td>
-          <td>{{ i.body.current.temp }}</td>
-          <td>{{ new Date(i.body.current.dt * 1000) }}</td>
+          <td>Temperature (Kelvin)</td>
+          <td
+            v-for="(i, index) in $store.state.hourlyWeather[0].body.hourly"
+            :key="index"
+          >
+            {{ Math.round(i.temp - 273.15) }}
+          </td>
+        </tr>
+
+        <tr v-for="(i, index) in $store.state.hourlyWeather" :key="index">
+          <td>Feels Temperature (Kelvin)</td>
+          <td
+            v-for="(i, index) in $store.state.hourlyWeather[0].body.hourly"
+            :key="index"
+          >
+            {{ Math.round(i.feels_like - 273.15) }}
+          </td>
+        </tr>
+
+        <tr v-for="(i, index) in $store.state.hourlyWeather" :key="index">
+          <td>Pressure (hPa)</td>
+          <td
+            v-for="(i, index) in $store.state.hourlyWeather[0].body.hourly"
+            :key="index"
+          >
+            {{ i.pressure }}
+          </td>
+        </tr>
+
+        <tr v-for="(i, index) in $store.state.hourlyWeather" :key="index">
+          <td>Humidity (%)</td>
+          <td
+            v-for="(i, index) in $store.state.hourlyWeather[0].body.hourly"
+            :key="index"
+          >
+            {{ i.humidity }}
+          </td>
+        </tr>
+
+        <tr v-for="(i, index) in $store.state.hourlyWeather" :key="index">
+          <td>Wind Speed (m/s)</td>
+          <td
+            v-for="(i, index) in $store.state.hourlyWeather[0].body.hourly"
+            :key="index"
+          >
+            {{ i.wind_speed }}
+          </td>
         </tr>
       </table>
     </div>
@@ -27,7 +74,7 @@
       hourlyValue() {
         this.$http
           .get(
-            "http://localhost:8080/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=e27e11e0f84ba08de34ebcccbdc01163"
+            "http://localhost:8080/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=daily&appid=e27e11e0f84ba08de34ebcccbdc01163"
           )
           .then(
             (response) => {
@@ -60,7 +107,7 @@
   .weather-block {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
     margin-top: 20px;
   }
